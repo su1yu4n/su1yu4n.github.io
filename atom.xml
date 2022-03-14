@@ -6,7 +6,7 @@
   <link href="https://su1yu4n.github.io/atom.xml" rel="self"/>
   
   <link href="https://su1yu4n.github.io/"/>
-  <updated>2022-01-25T01:32:44.315Z</updated>
+  <updated>2022-03-14T08:31:59.844Z</updated>
   <id>https://su1yu4n.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>English Speaking Topic: Cities</title>
+    <link href="https://su1yu4n.github.io/2022/03/14/English-Speaking-Topic-Cities/"/>
+    <id>https://su1yu4n.github.io/2022/03/14/English-Speaking-Topic-Cities/</id>
+    <published>2022-03-14T07:34:04.000Z</published>
+    <updated>2022-03-14T08:31:59.844Z</updated>
+    
+    <content type="html"><![CDATA[<span id="more"></span><p>When you are introducing a city, you may want to talk about </p><ul><li>Location / Size  </li><li>History  </li><li>Industry / Commerce</li><li>Interesting places  / Culture</li><li>Weather / Climate</li></ul><h2 id="Example-Tianjin"><a href="#Example-Tianjin" class="headerlink" title="Example: Tianjin"></a>Example: Tianjin</h2><h3 id="Location-Size"><a href="#Location-Size" class="headerlink" title="Location / Size"></a>Location / Size</h3><ol><li>Tianjin is a big city. It can be found on the east coast of China.</li><li>Tianjin’s located to the south of Beijing, just next to it.</li><li>Tianjin’s located in the northeast of China in the Bohai Sea area.</li></ol><h3 id="History"><a href="#History" class="headerlink" title="History"></a>History</h3><ol><li>Tianjin has a history of more than 600 years since its establishment in 1404. </li><li>In 1860, Tianjin was opened up as a trading port.</li></ol><h3 id="Industry-Commerce"><a href="#Industry-Commerce" class="headerlink" title="Industry / Commerce"></a>Industry / Commerce</h3><ol><li>It relies mainly on trade and service industry.</li><li>It’s famous for food and entertainment.</li><li>Its main source of revenue comes from trade.</li><li>The economy depends mainly on port trading and service industry.</li></ol><h3 id="Interesting-places-Culture"><a href="#Interesting-places-Culture" class="headerlink" title="Interesting places / Culture"></a>Interesting places / Culture</h3><ol><li>Places worth visiting include Haihe River and Huangyaguan Great Wall and Panshan mountain.</li><li>It enjoys a reputation of a “cradle of operas” and “motherland of quyi”.</li><li>Tianjin xiangsheng is the best one in China.</li><li>If you could only do one thing in Tianjin, I would recommend tasting some snacks of Tianjin.</li></ol><h3 id="Weather-Climate"><a href="#Weather-Climate" class="headerlink" title="Weather / Climate"></a>Weather / Climate</h3><p>1. </p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;span id=&quot;more&quot;&gt;&lt;/span&gt;
+&lt;p&gt;When you are introducing a city, you may want to talk about &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Location / Size  &lt;/li&gt;
+&lt;li&gt;History  &lt;/l</summary>
+      
+    
+    
+    
+    <category term="English" scheme="https://su1yu4n.github.io/categories/English/"/>
+    
+    
+    <category term="English" scheme="https://su1yu4n.github.io/tags/English/"/>
+    
+    <category term="English speaking" scheme="https://su1yu4n.github.io/tags/English-speaking/"/>
+    
+  </entry>
   
   <entry>
     <title>这是我的新博客！</title>
@@ -116,9 +146,9 @@
     <link href="https://su1yu4n.github.io/2021/03/04/%E8%B0%83%E6%95%B4%E5%85%89%E7%8C%AB%E5%92%8C%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F/"/>
     <id>https://su1yu4n.github.io/2021/03/04/%E8%B0%83%E6%95%B4%E5%85%89%E7%8C%AB%E5%92%8C%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F/</id>
     <published>2021-03-04T13:00:05.000Z</published>
-    <updated>2022-03-12T08:25:51.235Z</updated>
+    <updated>2022-03-12T08:37:34.252Z</updated>
     
-    <content type="html"><![CDATA[<p>最近实在忍不了家里的WiFi了，经常丢包和断线，游戏没法打，网也上着费劲，因此决定对WiFi进行优化。</p><span id="more"></span><p>家里的网络结构是光猫接上路由器的WAN口，平时手机电脑上网时连路由器，路由器连光猫。就是那种很常见的小型家庭网络。</p><h2 id="优化光猫"><a href="#优化光猫" class="headerlink" title="优化光猫"></a>优化光猫</h2><h3 id="关无线功能"><a href="#关无线功能" class="headerlink" title="关无线功能"></a>关无线功能</h3><p>仔细看光猫，发现开启了路由模式（无线工作指示灯亮着），也就是说光猫既要进行光电信号的转换、拨号还要发射无线信号。但是光猫这玩意性能很差，这也是为什么我们要花钱买路由器。因此<strong>我们要把光猫的无线关掉。</strong></p><p><em>网上说可以让光猫开启桥接模式，让路由器来拨号。但是联通的光猫设置起来好像比较麻烦，我也没找到设置选项。也有人说就让光猫拨号就行，一般情况下不用搞，而且改桥接还可能被运营商限速。所以这里就只关掉光猫的wifi功能，没调桥接，光猫的DHCP也没关。</em></p><ol><li>首先，我们先查看下光猫的IP地址</li></ol><p><img src="D:\Blog\su1yu4n\source\_posts\调整光猫和路由器工作模式\打开路由器页面查看光猫IP.png" alt="打开路由器页面查看光猫IP"></p><p>这大概就是光猫的ip地址了，我们再用tracert看一下</p><p><img src="D:\Blog\su1yu4n\source\_posts\调整光猫和路由器工作模式\Powershell中使用tracert命令.png" alt="Powershell中使用tracert命令"></p><p>第一跳肯定是我们的路由器，第二跳肯定是光猫，可见光猫确实是192.168.18.1这个IP地址了。</p><ol><li>进入光猫配置页面，关掉Wifi功能。这里光猫的密码通过扫光猫上贴的二维码得到，如果光猫上到处没有写的话就要问下运营商了。</li></ol><p>既然关DHCP费劲，调桥接模式更费劲，那光猫就没什么可优化的了。</p><h3 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h3><p>就光猫这性能，防火墙铁定是鸡肋，不会有什么用的。家里的路由器开防火墙就足够了。我们把光猫的防DoS，ipv6spi统统关掉，节省一些光猫的性能。</p><h2 id="优化路由器"><a href="#优化路由器" class="headerlink" title="优化路由器"></a>优化路由器</h2><h3 id="开启QoS"><a href="#开启QoS" class="headerlink" title="开启QoS"></a>开启QoS</h3><p>有时候可能是家里看视频占带宽太大，网很卡。看到路由器CPU和内存负载挺低，那开个QoS吧。下载速度自己应该知道，上传速度，自己测一下就完事了。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>想小优化一下，发现其实没太多可优化的。要想优化得细节一些又要花很多时间捣腾，先就这样吧。</p>]]></content>
+    <content type="html"><![CDATA[<p>最近实在忍不了家里的WiFi了，经常丢包和断线，游戏没法打，网也上着费劲，因此决定对WiFi进行优化。</p><span id="more"></span><p>家里的网络结构是光猫接上路由器的WAN口，平时手机电脑上网时连路由器，路由器连光猫。就是那种很常见的小型家庭网络。</p><h2 id="优化光猫"><a href="#优化光猫" class="headerlink" title="优化光猫"></a>优化光猫</h2><h3 id="关无线功能"><a href="#关无线功能" class="headerlink" title="关无线功能"></a>关无线功能</h3><p>仔细看光猫，发现开启了路由模式（无线工作指示灯亮着），也就是说光猫既要进行光电信号的转换、拨号还要发射无线信号。但是光猫这玩意性能很差，这也是为什么我们要花钱买路由器。因此<strong>我们要把光猫的无线关掉。</strong></p><p><em>网上说可以让光猫开启桥接模式，让路由器来拨号。但是联通的光猫设置起来好像比较麻烦，我也没找到设置选项。也有人说就让光猫拨号就行，一般情况下不用搞，而且改桥接还可能被运营商限速。所以这里就只关掉光猫的wifi功能，没调桥接，光猫的DHCP也没关。</em></p><ol><li>首先，我们先查看下光猫的IP地址</li></ol><p><img src="打开路由器页面查看光猫IP.png" alt="打开路由器页面查看光猫IP"></p><p>这大概就是光猫的ip地址了，我们再用tracert看一下</p><p><img src="Powershell中使用tracert命令.png" alt="Powershell中使用tracert命令"></p><p>第一跳肯定是我们的路由器，第二跳肯定是光猫，可见光猫确实是192.168.18.1这个IP地址了。</p><ol><li>进入光猫配置页面，关掉Wifi功能。这里光猫的密码通过扫光猫上贴的二维码得到，如果光猫上到处没有写的话就要问下运营商了。</li></ol><p>既然关DHCP费劲，调桥接模式更费劲，那光猫就没什么可优化的了。</p><h3 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h3><p>就光猫这性能，防火墙铁定是鸡肋，不会有什么用的。家里的路由器开防火墙就足够了。我们把光猫的防DoS，ipv6spi统统关掉，节省一些光猫的性能。</p><h2 id="优化路由器"><a href="#优化路由器" class="headerlink" title="优化路由器"></a>优化路由器</h2><h3 id="开启QoS"><a href="#开启QoS" class="headerlink" title="开启QoS"></a>开启QoS</h3><p>有时候可能是家里看视频占带宽太大，网很卡。看到路由器CPU和内存负载挺低，那开个QoS吧。下载速度自己应该知道，上传速度，自己测一下就完事了。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>想小优化一下，发现其实没太多可优化的。要想优化得细节一些又要花很多时间捣腾，先就这样吧。</p>]]></content>
     
     
     <summary type="html">&lt;p&gt;最近实在忍不了家里的WiFi了，经常丢包和断线，游戏没法打，网也上着费劲，因此决定对WiFi进行优化。&lt;/p&gt;</summary>
@@ -137,7 +167,7 @@
     <link href="https://su1yu4n.github.io/2019/09/01/%E9%9A%8F%E7%BC%98%E7%9A%84%E8%8B%B1%E8%AF%AD%E5%90%AC%E5%8A%9B%E7%A7%98%E7%B1%8D/"/>
     <id>https://su1yu4n.github.io/2019/09/01/%E9%9A%8F%E7%BC%98%E7%9A%84%E8%8B%B1%E8%AF%AD%E5%90%AC%E5%8A%9B%E7%A7%98%E7%B1%8D/</id>
     <published>2019-09-01T09:30:00.000Z</published>
-    <updated>2022-03-12T08:19:00.753Z</updated>
+    <updated>2022-03-14T07:36:16.275Z</updated>
     
     <content type="html"><![CDATA[<p>这是一种可以让英语应试水平和英语能力同步提升的训练方法。经过一个月的训练，我的朋友在之前英语水平一般的情况下，四级听力得到200分，也顺利通过了六级。</p><span id="more"></span><h3 id="考试方法"><a href="#考试方法" class="headerlink" title="考试方法"></a>考试方法</h3><p>考试关键点：听到了选项要在纸上随时做标记，记录一些关键词</p><h3 id="训练方法：精听"><a href="#训练方法：精听" class="headerlink" title="训练方法：精听"></a>训练方法：精听</h3><p>以练习<strong>精听为主</strong>，临考前可以再做几套听力题。</p><p>精听：拿一篇自己听起来有点困难的文章/对话，逐句听写。</p><h4 id="具体流程"><a href="#具体流程" class="headerlink" title="具体流程"></a>具体流程</h4><p>一句话听数次，把自己听到的部分写在纸上，直到写下完整句子，或者连续听了两次都听不出来一个新词为止。之后纠正错误，补全没听懂的部分。如果这句话有没听懂的地方（尤其是连读），看着原句对照其发音再听，有能力可模仿其发音（连读）。</p><h4 id="听力选材建议"><a href="#听力选材建议" class="headerlink" title="听力选材建议"></a>听力选材建议</h4><p><strong>用来做精听的文章词汇量不要高于自己词汇量</strong>，至少有1000以上词汇量（初中水平）再做精听</p><ul><li>高考不及格的水平可以听新概念2前半本；</li><li>四级500分及以下 / 高考的水平 听新概念英语2后半本、VOA慢速等；</li><li>四级550 / 六级500分水平 尝试听新概念3的前半本、VOA；</li><li>四级580以上 / 六级540以上 听新概念3后半本、老托福文章、新托福对话、VOA…</li></ul><p><strong>如果有考试听力练习的原文，可以对听力材料做精听。</strong></p><h4 id="练习时长及效果"><a href="#练习时长及效果" class="headerlink" title="练习时长及效果"></a>练习时长及效果</h4><p>每周听3-4天，每天1次，至少15分钟并且至少80个词。</p><p>坚持一个月，四级听力150-&gt;190</p><p>坚持两个月150-&gt;210-220（词汇量不低于3000情况下）</p><p>每周天天听，坚持40天 150-&gt;210</p><p>基本上，听个7-10天就感觉有提升。</p>]]></content>
     
@@ -146,12 +176,10 @@
     
     
     
-    <category term="外语" scheme="https://su1yu4n.github.io/categories/%E5%A4%96%E8%AF%AD/"/>
+    <category term="English" scheme="https://su1yu4n.github.io/categories/English/"/>
     
     
-    <category term="English" scheme="https://su1yu4n.github.io/tags/English/"/>
-    
-    <category term="Listening" scheme="https://su1yu4n.github.io/tags/Listening/"/>
+    <category term="English listening" scheme="https://su1yu4n.github.io/tags/English-listening/"/>
     
   </entry>
   

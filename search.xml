@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>English Speaking Topic: Cities</title>
+      <link href="/2022/03/14/English-Speaking-Topic-Cities/"/>
+      <url>/2022/03/14/English-Speaking-Topic-Cities/</url>
+      
+        <content type="html"><![CDATA[<span id="more"></span><p>When you are introducing a city, you may want to talk about </p><ul><li>Location / Size  </li><li>History  </li><li>Industry / Commerce</li><li>Interesting places  / Culture</li><li>Weather / Climate</li></ul><h2 id="Example-Tianjin"><a href="#Example-Tianjin" class="headerlink" title="Example: Tianjin"></a>Example: Tianjin</h2><h3 id="Location-Size"><a href="#Location-Size" class="headerlink" title="Location / Size"></a>Location / Size</h3><ol><li>Tianjin is a big city. It can be found on the east coast of China.</li><li>Tianjin’s located to the south of Beijing, just next to it.</li><li>Tianjin’s located in the northeast of China in the Bohai Sea area.</li></ol><h3 id="History"><a href="#History" class="headerlink" title="History"></a>History</h3><ol><li>Tianjin has a history of more than 600 years since its establishment in 1404. </li><li>In 1860, Tianjin was opened up as a trading port.</li></ol><h3 id="Industry-Commerce"><a href="#Industry-Commerce" class="headerlink" title="Industry / Commerce"></a>Industry / Commerce</h3><ol><li>It relies mainly on trade and service industry.</li><li>It’s famous for food and entertainment.</li><li>Its main source of revenue comes from trade.</li><li>The economy depends mainly on port trading and service industry.</li></ol><h3 id="Interesting-places-Culture"><a href="#Interesting-places-Culture" class="headerlink" title="Interesting places / Culture"></a>Interesting places / Culture</h3><ol><li>Places worth visiting include Haihe River and Huangyaguan Great Wall and Panshan mountain.</li><li>It enjoys a reputation of a “cradle of operas” and “motherland of quyi”.</li><li>Tianjin xiangsheng is the best one in China.</li><li>If you could only do one thing in Tianjin, I would recommend tasting some snacks of Tianjin.</li></ol><h3 id="Weather-Climate"><a href="#Weather-Climate" class="headerlink" title="Weather / Climate"></a>Weather / Climate</h3><p>1. </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> English </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> English </tag>
+            
+            <tag> English speaking </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>这是我的新博客！</title>
       <link href="/2022/01/21/hello-world/"/>
       <url>/2022/01/21/hello-world/</url>
@@ -110,7 +137,7 @@
       <link href="/2021/03/04/%E8%B0%83%E6%95%B4%E5%85%89%E7%8C%AB%E5%92%8C%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F/"/>
       <url>/2021/03/04/%E8%B0%83%E6%95%B4%E5%85%89%E7%8C%AB%E5%92%8C%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F/</url>
       
-        <content type="html"><![CDATA[<p>最近实在忍不了家里的WiFi了，经常丢包和断线，游戏没法打，网也上着费劲，因此决定对WiFi进行优化。</p><span id="more"></span><p>家里的网络结构是光猫接上路由器的WAN口，平时手机电脑上网时连路由器，路由器连光猫。就是那种很常见的小型家庭网络。</p><h2 id="优化光猫"><a href="#优化光猫" class="headerlink" title="优化光猫"></a>优化光猫</h2><h3 id="关无线功能"><a href="#关无线功能" class="headerlink" title="关无线功能"></a>关无线功能</h3><p>仔细看光猫，发现开启了路由模式（无线工作指示灯亮着），也就是说光猫既要进行光电信号的转换、拨号还要发射无线信号。但是光猫这玩意性能很差，这也是为什么我们要花钱买路由器。因此<strong>我们要把光猫的无线关掉。</strong></p><p><em>网上说可以让光猫开启桥接模式，让路由器来拨号。但是联通的光猫设置起来好像比较麻烦，我也没找到设置选项。也有人说就让光猫拨号就行，一般情况下不用搞，而且改桥接还可能被运营商限速。所以这里就只关掉光猫的wifi功能，没调桥接，光猫的DHCP也没关。</em></p><ol><li>首先，我们先查看下光猫的IP地址</li></ol><p><img src="D:\Blog\su1yu4n\source\_posts\调整光猫和路由器工作模式\打开路由器页面查看光猫IP.png" alt="打开路由器页面查看光猫IP"></p><p>这大概就是光猫的ip地址了，我们再用tracert看一下</p><p><img src="D:\Blog\su1yu4n\source\_posts\调整光猫和路由器工作模式\Powershell中使用tracert命令.png" alt="Powershell中使用tracert命令"></p><p>第一跳肯定是我们的路由器，第二跳肯定是光猫，可见光猫确实是192.168.18.1这个IP地址了。</p><ol><li>进入光猫配置页面，关掉Wifi功能。这里光猫的密码通过扫光猫上贴的二维码得到，如果光猫上到处没有写的话就要问下运营商了。</li></ol><p>既然关DHCP费劲，调桥接模式更费劲，那光猫就没什么可优化的了。</p><h3 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h3><p>就光猫这性能，防火墙铁定是鸡肋，不会有什么用的。家里的路由器开防火墙就足够了。我们把光猫的防DoS，ipv6spi统统关掉，节省一些光猫的性能。</p><h2 id="优化路由器"><a href="#优化路由器" class="headerlink" title="优化路由器"></a>优化路由器</h2><h3 id="开启QoS"><a href="#开启QoS" class="headerlink" title="开启QoS"></a>开启QoS</h3><p>有时候可能是家里看视频占带宽太大，网很卡。看到路由器CPU和内存负载挺低，那开个QoS吧。下载速度自己应该知道，上传速度，自己测一下就完事了。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>想小优化一下，发现其实没太多可优化的。要想优化得细节一些又要花很多时间捣腾，先就这样吧。</p>]]></content>
+        <content type="html"><![CDATA[<p>最近实在忍不了家里的WiFi了，经常丢包和断线，游戏没法打，网也上着费劲，因此决定对WiFi进行优化。</p><span id="more"></span><p>家里的网络结构是光猫接上路由器的WAN口，平时手机电脑上网时连路由器，路由器连光猫。就是那种很常见的小型家庭网络。</p><h2 id="优化光猫"><a href="#优化光猫" class="headerlink" title="优化光猫"></a>优化光猫</h2><h3 id="关无线功能"><a href="#关无线功能" class="headerlink" title="关无线功能"></a>关无线功能</h3><p>仔细看光猫，发现开启了路由模式（无线工作指示灯亮着），也就是说光猫既要进行光电信号的转换、拨号还要发射无线信号。但是光猫这玩意性能很差，这也是为什么我们要花钱买路由器。因此<strong>我们要把光猫的无线关掉。</strong></p><p><em>网上说可以让光猫开启桥接模式，让路由器来拨号。但是联通的光猫设置起来好像比较麻烦，我也没找到设置选项。也有人说就让光猫拨号就行，一般情况下不用搞，而且改桥接还可能被运营商限速。所以这里就只关掉光猫的wifi功能，没调桥接，光猫的DHCP也没关。</em></p><ol><li>首先，我们先查看下光猫的IP地址</li></ol><p><img src="打开路由器页面查看光猫IP.png" alt="打开路由器页面查看光猫IP"></p><p>这大概就是光猫的ip地址了，我们再用tracert看一下</p><p><img src="Powershell中使用tracert命令.png" alt="Powershell中使用tracert命令"></p><p>第一跳肯定是我们的路由器，第二跳肯定是光猫，可见光猫确实是192.168.18.1这个IP地址了。</p><ol><li>进入光猫配置页面，关掉Wifi功能。这里光猫的密码通过扫光猫上贴的二维码得到，如果光猫上到处没有写的话就要问下运营商了。</li></ol><p>既然关DHCP费劲，调桥接模式更费劲，那光猫就没什么可优化的了。</p><h3 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h3><p>就光猫这性能，防火墙铁定是鸡肋，不会有什么用的。家里的路由器开防火墙就足够了。我们把光猫的防DoS，ipv6spi统统关掉，节省一些光猫的性能。</p><h2 id="优化路由器"><a href="#优化路由器" class="headerlink" title="优化路由器"></a>优化路由器</h2><h3 id="开启QoS"><a href="#开启QoS" class="headerlink" title="开启QoS"></a>开启QoS</h3><p>有时候可能是家里看视频占带宽太大，网很卡。看到路由器CPU和内存负载挺低，那开个QoS吧。下载速度自己应该知道，上传速度，自己测一下就完事了。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>想小优化一下，发现其实没太多可优化的。要想优化得细节一些又要花很多时间捣腾，先就这样吧。</p>]]></content>
       
       
       <categories>
@@ -140,16 +167,14 @@
       
       <categories>
           
-          <category> 外语 </category>
+          <category> English </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> English </tag>
-            
-            <tag> Listening </tag>
+            <tag> English listening </tag>
             
         </tags>
       
