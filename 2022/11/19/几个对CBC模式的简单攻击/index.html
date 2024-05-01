@@ -1,0 +1,109 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="几个对CBC模式分组密码的简单攻击"><meta name="keywords" content="分组密码,Padding Oracle Attack,字节翻转攻击"><meta name="author" content="随缘(su1yu4n)"><meta name="copyright" content="随缘(su1yu4n)"><title>几个对CBC模式分组密码的简单攻击 | 随缘的博客</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.0"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://unpkg.com"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitment/style/default.min.css"><script src="https://cdn.jsdelivr.net/npm/gitment/dist/gitment.browser.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><link rel="manifest" href="/manifest.json"><link rel="manifest" href="/manifest.json"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  hexoVersion: '6.0.0'
+} </script><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="随缘的博客" type="application/atom+xml">
+</head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CBC%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">CBC模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E8%8A%82%E7%BF%BB%E8%BD%AC%E6%94%BB%E5%87%BB-Bit-Flip"><span class="toc-number">2.</span> <span class="toc-text">字节翻转攻击(Bit Flip)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E6%9D%A1%E4%BB%B6"><span class="toc-number">2.1.</span> <span class="toc-text">攻击条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E5%8E%9F%E7%90%86%E5%92%8C%E6%95%88%E6%9E%9C"><span class="toc-number">2.2.</span> <span class="toc-text">攻击原理和效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E4%BB%A5%E6%8E%A7%E5%88%B6IV%E7%9A%84%E6%83%85%E5%86%B5"><span class="toc-number">2.3.</span> <span class="toc-text">可以控制IV的情况</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Padding-Oracle-Attack"><span class="toc-number">3.</span> <span class="toc-text">Padding Oracle Attack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E6%9D%A1%E4%BB%B6-1"><span class="toc-number">3.1.</span> <span class="toc-text">攻击条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E6%95%88%E6%9E%9C"><span class="toc-number">3.2.</span> <span class="toc-text">攻击效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E5%8E%9F%E7%90%86"><span class="toc-number">3.3.</span> <span class="toc-text">攻击原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%AF%B9%E6%94%BB%E5%87%BB%E7%9A%84%E9%98%B2%E5%BE%A1"><span class="toc-number">3.4.</span> <span class="toc-text">一些对攻击的防御</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%B0%E5%AE%9E%E4%B8%AD%E7%9A%84%E6%94%BB%E5%87%BB%E5%AE%9E%E4%BE%8B"><span class="toc-number">3.5.</span> <span class="toc-text">现实中的攻击实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://su1yu4n.github.io/images/avatar_miku.png"></div><div class="author-info__name text-center">随缘(su1yu4n)</div><div class="author-info__description text-center">Nepnep棺材板，XDSEC潜水员，CTF纯业余。发一些数学密码学和技术相关的内容，以及个人相关的内容。</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">18</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">29</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">4</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">Friends</div><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://ziyangzhu.github.io/home/">Ziyang ZHU</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://shal10w.github.io/">shallow</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://www.h3h3qaq.cn/">H3h3QAQ</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://Lord-Riot.github.io">Lord Riot</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://github.com/y-f00l/skr-lab">youn9</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://blog.soreatu.com/">soreatu</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://www.scraft.top/">暮光小猿wzt</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://shakaianee.top/">社会易姐QwQ</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://blog.wh1sper.com/">wh1sper</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://github.com/yuligesec">郁离歌</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://link.fffmath.com/">fffmath</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45935647">1jt</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://blog.csdn.net/jcbx_">gm1y</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://su1yu4n.github.io/images/miku1_rella_compressed.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">随缘的博客</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a></span></div><div id="post-info"><div id="post-title">几个对CBC模式分组密码的简单攻击</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-11-19</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a><div class="post-meta-wordcount"><span>字数总计: </span><span class="word-count">999</span><span class="post-meta__separator">|</span><span>阅读时长: 4 分钟</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><p><strong>总结CBC模式下的字节翻转攻击和Padding Oracle Attack</strong>。由于时间关系，padding oracle attack的原理部分暂时上传手稿截图。</p>
+<span id="more"></span>
+<h2 id="CBC模式"><a href="#CBC模式" class="headerlink" title="CBC模式"></a>CBC模式</h2><p>参考<a target="_blank" rel="noopener" href="https://ctf-wiki.org/crypto/blockcipher/mode/cbc/">CTF Wiki</a>即可。</p>
+<p>除了CBC的结构需要掌握，还要知道一个很重要的结论：<strong>标准的CBC是CPA安全的，但不是CCA安全的。</strong>也就是说我们有一些选择密文攻击(Chosen Ciphertext Attack)。</p>
+<h2 id="字节翻转攻击-Bit-Flip"><a href="#字节翻转攻击-Bit-Flip" class="headerlink" title="字节翻转攻击(Bit Flip)"></a>字节翻转攻击(Bit Flip)</h2><h3 id="攻击条件"><a href="#攻击条件" class="headerlink" title="攻击条件"></a>攻击条件</h3><p>假设我们知道采用的加密算法和IV值，并且我们知道一个明密文对$(P_1||P_2, C_1||C_2)$。假设我们可以控制待解密的$C_1||C_2$。 （这里$A||B$表示两个连续的明/密文分组）</p>
+<h3 id="攻击原理和效果"><a href="#攻击原理和效果" class="headerlink" title="攻击原理和效果"></a>攻击原理和效果</h3><p>我们可以伪造密文，使得解密后的明文为$P_1||A$。其中第二个明文分组$A$是我们自己随意选择的。这是因为我们有：</p>
+<script type="math/tex; mode=display">C_{i} = E_{K}\left(P_{i} \ \oplus  \ C_{i-1}\right) \Longrightarrow  \\ 
+           P_{i} = D_{K}(C_{i}) \ \oplus  \ C_{i-1} \Longrightarrow  \\ 
+     P_{2} = D_{K}(C_{2}) \ \oplus  \ C_1</script><p><strong>如果我们想伪造$P_2’ = A$，我们只需要取$C_{1}’ = C_{1} \oplus P_{2} \oplus A$。</strong>可以验证等式$P_{2}’ = D_{K}(C_{2}) \ \oplus  \ C_1’$ 成立。因此$C_{1}’ || C_{2}$对应的明文确实是$P_1||A$。</p>
+<h3 id="可以控制IV的情况"><a href="#可以控制IV的情况" class="headerlink" title="可以控制IV的情况"></a>可以控制IV的情况</h3><p>如果我们能控制$IV$和密文值，由于$IV = C_{0}$，我们也有类似的攻击方法。考虑到</p>
+<script type="math/tex; mode=display">P_{1} = D_{K}(C_{1}) \ \oplus  \ C_0, \  \text{where} \ C_0 = IV</script><p>那么我们按照上面改$C_1$的方法修改$IV$即可。</p>
+<p><em>Cryptohack有一个CTF题，感兴趣的可以找到它练一下。但是考虑到cryptohack的规则，我不说是哪个。</em></p>
+<h2 id="Padding-Oracle-Attack"><a href="#Padding-Oracle-Attack" class="headerlink" title="Padding Oracle Attack"></a>Padding Oracle Attack</h2><p><em>以下攻击条件和攻击效果两部分基本引用了<a target="_blank" rel="noopener" href="https://ctf-wiki.org/crypto/blockcipher/mode/padding-oracle-attack/">CTF Wiki - padding oracle attack</a>中的内容。但是我在看CTF Wiki攻击原理部分的时候感觉有一些不清晰的地方，因此我还是自己手推了一下攻击原理。</em></p>
+<h3 id="攻击条件-1"><a href="#攻击条件-1" class="headerlink" title="攻击条件"></a>攻击条件</h3><p>Padding Oracle Attack 攻击一般需要满足以下几个条件</p>
+<ul>
+<li><p>加密算法</p>
+<ul>
+<li>采用 PKCS5/PKCS7 Padding 的加密算法。 当然，非对称加密中 OAEP 的填充方式也有可能会受到影响。</li>
+<li>分组模式为 CBC 模式。</li>
+</ul>
+</li>
+<li><p>攻击者能力</p>
+<ul>
+<li>攻击者可以拦截上述加密算法加密的消息。</li>
+<li>攻击者可以和 padding oracle（即服务器） 进行交互：客户端向服务器端发送密文，服务器端会以某种返回信息告知客户端 padding 是否正常。</li>
+</ul>
+</li>
+</ul>
+<h3 id="攻击效果"><a href="#攻击效果" class="headerlink" title="攻击效果"></a>攻击效果</h3><p>Padding Oracle Attack 攻击可以达到的效果如下</p>
+<ul>
+<li>在不清楚 key 和 IV 的前提下解密任意给定的密文。</li>
+</ul>
+<h3 id="攻击原理"><a href="#攻击原理" class="headerlink" title="攻击原理"></a>攻击原理</h3><p>大思路是根据padding格式推出最后一个字节，然后在此基础上再考虑推出倒数第二个字节…最终发现可以对任意一个密文分组做解密。直接贴手稿图。</p>
+<p><img src="padding_oracle_1.jpg" alt="padding_oracle_1"></p>
+<p><img src="padding_oracle_2.png" alt="padding_oracle_2"></p>
+<h3 id="一些对攻击的防御"><a href="#一些对攻击的防御" class="headerlink" title="一些对攻击的防御"></a>一些对攻击的防御</h3><ol>
+<li><p>采用一些别的padding（例如One and Zeroes Padding）可以防止这个攻击，但是会有一些别的问题。参考：<a target="_blank" rel="noopener" href="https://www.isg.rhul.ac.uk/~prai175/ISGStudentSem07/PaddingOracleAttacksphdseminar.pdf">Securing CBC mode Against Padding Oracle Attacks</a></p>
+</li>
+<li><p>引用<a target="_blank" rel="noopener" href="https://research.nccgroup.com/2021/02/17/cryptopals-exploiting-cbc-padding-oracles/">Cryptopals: Exploiting CBC Padding Oracles</a>的Defenses部分</p>
+</li>
+</ol>
+<blockquote>
+<p>This attack is a chosen-ciphertext attack. It depends on the attacker being able to submit arbitrary ciphertexts to the oracle. As such, you can prevent the attack by <em>authenticating your ciphertexts</em>. <strong>You might do this by switching from CBC mode to an authenticated encryption mode like GCM or OCB; alternately, keep CBC mode but start MACing your ciphertexts using something like HMAC</strong>.</p>
+<p>Removing the oracle would also prevent the attack. However, hopefully the example oracles above gave you some sense of how nontrivial this actually can be in practice. This is a cryptographic problem and it calls for a cryptographic solution; anything less is likely to be fragile and error-prone.</p>
+<p>By adding authentication tags and checking them prior to decryption, we guarantee that we’ll be able to reject any attacker-crafted messages without ever decrypting them, preventing us from leaking any information at all about their decrypted contents, padding-related or otherwise.</p>
+</blockquote>
+<h3 id="现实中的攻击实例"><a href="#现实中的攻击实例" class="headerlink" title="现实中的攻击实例"></a>现实中的攻击实例</h3><ul>
+<li>POODLE attack</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><p><a target="_blank" rel="noopener" href="https://ctf-wiki.org/crypto/blockcipher/mode/cbc/">CTF Wiki</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://robertheaton.com/2013/07/29/padding-oracle-attack/">Robert Heaton - The Padding Oracle Attack</a></p>
+</li>
+<li><p>Cryptohack’s CTF challenges.  Symmetry category</p>
+<p><em>According to the rule of cryptohack, I won’t tell you which challenge is it. Sorry about that.</em></p>
+</li>
+<li><p>Securing CBC mode Against Padding Oracle Attacks</p>
+</li>
+<li><a target="_blank" rel="noopener" href="https://research.nccgroup.com/2021/02/17/cryptopals-exploiting-cbc-padding-oracles/">Cryptopals: Exploiting CBC Padding Oracles</a></li>
+</ol>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">随缘(su1yu4n)</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://su1yu4n.github.io/2022/11/19/几个对CBC模式的简单攻击/">https://su1yu4n.github.io/2022/11/19/几个对CBC模式的简单攻击/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://su1yu4n.github.io">随缘的博客</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/">分组密码</a><a class="post-meta__tags" href="/tags/Padding-Oracle-Attack/">Padding Oracle Attack</a><a class="post-meta__tags" href="/tags/%E5%AD%97%E8%8A%82%E7%BF%BB%E8%BD%AC%E6%94%BB%E5%87%BB/">字节翻转攻击</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2023/02/23/CatCTF%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/"><i class="fa fa-chevron-left">  </i><span>CatCTF出题小记</span></a></div><div class="next-post pull-right"><a href="/2022/10/23/WSL2%20%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"><span>WSL2配置个人开发环境(C + Rust + sagemath)</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitment-container"></div><script>var gitment = new Gitment({
+  id: md5(decodeURI(location.pathname)),
+  owner: 'su1yu4n',
+  repo: 'su1yu4n.github.io/',
+  oauth: {
+    client_id: 'bd1c8c53a34d711c325c',
+    client_secret: 'e4c33be6bfd85795a047c2269592ec1a9e738146'
+  }
+})
+gitment.render('gitment-container')</script></div></div><footer class="footer-bg" style="background-image: url(https://su1yu4n.github.io/images/miku1_rella_compressed.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2022 - 2024 By 随缘(su1yu4n)</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>
