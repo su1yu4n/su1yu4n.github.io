@@ -6,7 +6,7 @@
   <link href="https://su1yu4n.github.io/atom.xml" rel="self"/>
   
   <link href="https://su1yu4n.github.io/"/>
-  <updated>2024-11-23T07:40:12.689Z</updated>
+  <updated>2024-11-25T03:02:33.139Z</updated>
   <id>https://su1yu4n.github.io/</id>
   
   <author>
@@ -21,13 +21,14 @@
     <link href="https://su1yu4n.github.io/2024/10/15/CSIDH%E6%96%B9%E6%A1%88%E5%88%86%E4%BA%AB/"/>
     <id>https://su1yu4n.github.io/2024/10/15/CSIDH%E6%96%B9%E6%A1%88%E5%88%86%E4%BA%AB/</id>
     <published>2024-10-15T02:54:13.000Z</published>
-    <updated>2024-11-23T07:40:12.689Z</updated>
+    <updated>2024-11-25T03:02:33.139Z</updated>
     
-    <content type="html"><![CDATA[<p>这段时间研究CSIDH，时间跨度接近一年了。<strong>这次分享尽可能降低了门槛，让大家听懂。</strong></p><p>个人认为CSIDH方案是数学、计算优化与工科思维的集大成者。同源密码用到的数学比较深，而同源计算也很灵活，可以将群论与工科式的想法结合。<strong>这次分享对数学原理和优化都有所覆盖。</strong></p><span id="more"></span><p>CM Torsor的性质没有深入，想了解建议看复环面/复椭圆曲线的复乘理论。</p><h2 id="前置基础和讲稿PDF"><a href="#前置基础和讲稿PDF" class="headerlink" title="前置基础和讲稿PDF"></a>前置基础和讲稿PDF</h2><p><a href="prerequisites.pdf">前置基础</a></p><p><a href="slides.pdf">讲稿</a></p><h2 id="提纲"><a href="#提纲" class="headerlink" title="提纲"></a>提纲</h2><h3 id="前置基础"><a href="#前置基础" class="headerlink" title="前置基础"></a>前置基础</h3><ul><li>同源基本常识<ul><li>同源的定义</li><li>同源与子群的对应关系</li><li>同源计算方法和复杂度：Velu公式（黑盒）</li></ul></li><li><p>群作用相关概念</p><ul><li>基本概念、实例</li><li>自由、可迁、挠子性质 $|G|=|X|$</li></ul></li><li><p>椭圆曲线相关</p><ul><li>超奇异椭圆曲线：$\left|E(\mathbb{F}_p)\right |=p+1$</li><li>Montgomery曲线<ul><li>曲线方程</li><li>二次扭曲与有理点群的对应</li><li><script type="math/tex">\mathbb{F}_p-</script>同构类中的唯一性</li></ul></li></ul></li></ul><h3 id="讲解内容"><a href="#讲解内容" class="headerlink" title="讲解内容"></a>讲解内容</h3><ol><li>CM Torsor和方案描述<ol><li>简述CM Torsor</li><li>方案概述</li><li><strong>群作用与同源的关系</strong></li><li><strong>密钥空间的选取</strong></li></ol></li><li>群作用计算<ol><li><strong>群作用计算流程</strong></li><li><strong>群作用层面优化介绍</strong></li><li>简述为何高效：无需扩域、仅需x坐标、避免求逆</li><li>CSIDH方案计算层次</li></ol></li><li>安全性简介                                                                                                                                                                                                                      <ol><li>经典安全性：$O(\mathcal{K}^{1/2})$ 中间相遇</li><li>量子安全性：亚指数，512 ~ “60 qbits”</li></ol></li><li>实用性简介<ol><li>优势：NIKE (0-RTT TLS, X3DH中替换经典DH的备选) , 密钥尺寸小</li><li>劣势：计算耗时：一次群作用100ms (2048 ~ NIST-I)</li></ol></li></ol>]]></content>
+    <content type="html"><![CDATA[<p>这段时间研究CSIDH，时间跨度接近一年了。<strong>这次分享尽可能降低了门槛，让大家听懂。</strong></p><p>个人认为CSIDH方案是数学、计算优化与工科思维的集大成者。同源密码用到的数学比较深，而同源计算也很灵活，可以将群论与工科式的想法结合。<strong>这次分享对数学原理和优化都有所覆盖。</strong></p><p>CM Torsor的性质没有深入，想了解建议看复环面/复椭圆曲线的复乘理论。</p><span id="more"></span><h2 id="前置基础-讲稿PDF和回放"><a href="#前置基础-讲稿PDF和回放" class="headerlink" title="前置基础, 讲稿PDF和回放"></a>前置基础, 讲稿PDF和回放</h2><p><a href="prerequisites.pdf">前置基础</a></p><p><a href="slides.pdf">讲稿</a></p><p><a href="https://www.bilibili.com/video/BV1yzmVY6E9r">B站回放</a></p><h2 id="提纲"><a href="#提纲" class="headerlink" title="提纲"></a>提纲</h2><h3 id="前置基础"><a href="#前置基础" class="headerlink" title="前置基础"></a>前置基础</h3><ul><li>同源基本常识<ul><li>同源的定义</li><li>同源与子群的对应关系</li><li>同源计算方法和复杂度：Velu公式（黑盒）</li></ul></li><li><p>群作用相关概念</p><ul><li>基本概念、实例</li><li>自由、可迁、挠子性质 $|G|=|X|$</li></ul></li><li><p>椭圆曲线相关</p><ul><li>超奇异椭圆曲线：$\left|E(\mathbb{F}_p)\right |=p+1$</li><li>Montgomery曲线<ul><li>曲线方程</li><li>二次扭曲与有理点群的对应</li><li><script type="math/tex">\mathbb{F}_p-</script>同构类中的唯一性</li></ul></li></ul></li></ul><h3 id="讲解内容"><a href="#讲解内容" class="headerlink" title="讲解内容"></a>讲解内容</h3><ol><li>CM Torsor和方案描述<ol><li>简述CM Torsor</li><li>方案概述</li><li><strong>群作用与同源的关系</strong></li><li><strong>密钥空间的选取</strong></li></ol></li><li>群作用计算<ol><li><strong>群作用计算流程</strong></li><li><strong>群作用层面优化介绍</strong></li><li>简述为何高效：无需扩域、仅需x坐标、避免求逆</li><li>CSIDH方案计算层次</li></ol></li><li>安全性简介                                                                                                                                                                                                                      <ol><li>经典安全性：$O(\mathcal{K}^{1/2})$ 中间相遇</li><li>量子安全性：亚指数，512 ~ “60 qbits”</li></ol></li><li>实用性简介<ol><li>优势：NIKE (0-RTT TLS, X3DH中替换经典DH的备选) , 密钥尺寸小</li><li>劣势：计算耗时：一次群作用100ms (2048 ~ NIST-I)</li></ol></li></ol>]]></content>
     
     
     <summary type="html">&lt;p&gt;这段时间研究CSIDH，时间跨度接近一年了。&lt;strong&gt;这次分享尽可能降低了门槛，让大家听懂。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;个人认为CSIDH方案是数学、计算优化与工科思维的集大成者。同源密码用到的数学比较深，而同源计算也很灵活，可以将群论与工科式的想法结合。&lt;strong&gt;这次分享对数学原理和优化都有所覆盖。&lt;/strong&gt;&lt;/p&gt;</summary>
+&lt;p&gt;个人认为CSIDH方案是数学、计算优化与工科思维的集大成者。同源密码用到的数学比较深，而同源计算也很灵活，可以将群论与工科式的想法结合。&lt;strong&gt;这次分享对数学原理和优化都有所覆盖。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;CM Torsor的性质没有深入，想了解建议看复环面/复椭圆曲线的复乘理论。&lt;/p&gt;</summary>
     
     
     
@@ -354,13 +355,13 @@
     <category term="Cryptology" scheme="https://su1yu4n.github.io/categories/Cryptology/"/>
     
     
+    <category term="密码分析" scheme="https://su1yu4n.github.io/tags/%E5%AF%86%E7%A0%81%E5%88%86%E6%9E%90/"/>
+    
     <category term="格论（几何数论）" scheme="https://su1yu4n.github.io/tags/%E6%A0%BC%E8%AE%BA%EF%BC%88%E5%87%A0%E4%BD%95%E6%95%B0%E8%AE%BA%EF%BC%89/"/>
     
     <category term="RSA" scheme="https://su1yu4n.github.io/tags/RSA/"/>
     
     <category term="格基规约算法" scheme="https://su1yu4n.github.io/tags/%E6%A0%BC%E5%9F%BA%E8%A7%84%E7%BA%A6%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="密码分析" scheme="https://su1yu4n.github.io/tags/%E5%AF%86%E7%A0%81%E5%88%86%E6%9E%90/"/>
     
   </entry>
   
